@@ -1,6 +1,7 @@
 #region
 
 using System;
+using GameJamUtility.Core.Infrastructure;
 using UnityEngine;
 
 #endregion
@@ -8,32 +9,11 @@ using UnityEngine;
 namespace GameJamUtility.Core.AudioManager
 {
     [Serializable]
-    public class AudioInfo
+    public class AudioInfo : DataInfo<AudioClip>
     {
-    #region Public Variables
-
-        public AudioClip Clip => clip;
-        public string    Key  => key;
-
-    #endregion
-
-    #region Private Variables
-
-        [SerializeField]
-        private string key;
-
-        [SerializeField]
-        private AudioClip clip;
-
-    #endregion
-
     #region Constructor
 
-        public AudioInfo(string key , AudioClip clip)
-        {
-            this.key  = key;
-            this.clip = clip;
-        }
+        public AudioInfo(string key , AudioClip value) : base(key , value) { }
 
     #endregion
     }

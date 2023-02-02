@@ -52,7 +52,7 @@ namespace GameJamUtility.Core.AudioManager
         {
             if (audioDatabase.TryGetInfo(audioKey , out var info))
             {
-                var clip = info.Clip;
+                var clip = info.Value;
                 audioSource.PlayOneShot(clip);
             }
             else
