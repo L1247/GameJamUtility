@@ -49,3 +49,7 @@ MonoBehaviour:
     infos:
     - key: Success
       value: {fileID: 8300000, guid: 5f4eb6f58e84b8f40b98d8b9cebc64de, type: 3}
+  musicDataBase:
+    infos:
+    - key: Epic Battle
+      value: {fileID: 8300000, guid: ae4befaa4f171f2468399c28d7d408be, type: 3}

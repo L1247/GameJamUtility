@@ -9,14 +9,14 @@ using UnityEngine;
 namespace GameJamUtility.Core.AudioManager
 {
     [Serializable]
-    public class AudioDatabase : Database<AudioInfo , AudioClip> { }
+    public class MusicDataBase : Database<MusicInfo , AudioClip> { }
 
     [Serializable]
-    public class AudioInfo : DataInfo<AudioClip>
+    public class MusicInfo : DataInfo<AudioClip>
     {
     #region Constructor
 
-        public AudioInfo(string key , AudioClip value) : base(key , value) { }
+        public MusicInfo(string key , AudioClip value) : base(key , value) { }
 
     #endregion
     }

@@ -44,24 +44,31 @@ namespace GameJamUtility.Core.AudioManager
         [SerializeField]
         private AudioDatabase audioDatabase;
 
+        [SerializeField]
+        private MusicDataBase musicDataBase;
+
     #endregion
 
     #region Public Methods
 
         public void PlayAudio(string audioKey)
         {
-            if (audioDatabase.TryGetInfo(audioKey , out var info))
+            if (audioDatabase.TryGetValue(audioKey , out var clip)) audioSource.PlayOneShot(clip);
+            else Debug.LogWarning($"[Play Audio] - can't find audio by key: {audioKey} , Try add AudioInfo in prefab.");
+        }
+
+        public void PlayMusic(string musicKey)
+        {
+            if (musicDataBase.TryGetValue(musicKey , out var clip))
             {
-                var clip = info.Value;
-                audioSource.PlayOneShot(clip);
+                audioSource.clip = clip;
+                audioSource.Play();
             }
             else
             {
-                Debug.LogWarning($"[Play Audio] - can't find audio by key: {audioKey} , Try add AudioInfo in prefab.");
+                Debug.LogWarning($"[Play Music] - can't find music by key: {musicKey} , Try add MusicInfo in prefab.");
             }
         }
-
-        public void PlayMusic(string musicKey) { }
 
     #endregion
 
