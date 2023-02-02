@@ -1,0 +1,16 @@
+{
+  "name": "Demo",
+  "rootNamespace": "",
+  "references": [
+    "GameJamUtility"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
