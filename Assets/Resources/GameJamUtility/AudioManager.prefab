@@ -48,3 +48,7 @@ MonoBehaviour:
   audioInfos:
   - key: Success
     clip: {fileID: 8300000, guid: 5f4eb6f58e84b8f40b98d8b9cebc64de, type: 3}
+  audioDatabase:
+    audioInfos:
+    - key: Success
+      clip: {fileID: 8300000, guid: 5f4eb6f58e84b8f40b98d8b9cebc64de, type: 3}

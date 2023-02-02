@@ -1,7 +1,5 @@
 #region
 
-using System.Collections.Generic;
-using System.Linq;
 using GameJamUtility.Core.UnityUtility;
 using UnityEngine;
 
@@ -44,22 +42,15 @@ namespace GameJamUtility.Core.AudioManager
         private AudioSource audioSource;
 
         [SerializeField]
-        private List<AudioInfo> audioInfos = new List<AudioInfo>();
+        private AudioDatabase audioDatabase;
 
     #endregion
 
     #region Public Methods
 
-        public void AddOrOverwrite(string key , AudioClip clip)
-        {
-            if (TryGetInfo(key , out var info)) return;
-            info = new AudioInfo(key , clip);
-            audioInfos.Add(info);
-        }
-
         public void PlayAudio(string audioKey)
         {
-            if (TryGetInfo(audioKey , out var info))
+            if (audioDatabase.TryGetInfo(audioKey , out var info))
             {
                 var clip = info.Clip;
                 audioSource.PlayOneShot(clip);
@@ -70,19 +61,7 @@ namespace GameJamUtility.Core.AudioManager
             }
         }
 
-        public bool TryGetValue(string key , out AudioClip value)
-        {
-            if (TryGetInfo(key , out var info) == false)
-            {
-                value = null;
-                return false;
-            }
-
-            value = info.Clip;
-            if (value is not null) return true;
-            Debug.LogWarning($"TryGetValue but the clip is null by key: {key}");
-            return false;
-        }
+        public void PlayMusic(string musicKey) { }
 
     #endregion
 
@@ -93,13 +72,6 @@ namespace GameJamUtility.Core.AudioManager
             audioSource             = gameObject.GetOrAddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             audioSource.clip        = null;
-        }
-
-        private bool TryGetInfo(string key , out AudioInfo value)
-        {
-            value = audioInfos.FirstOrDefault(info => info.Key == key);
-            var keyExist = value is not null;
-            return keyExist;
         }
 
     #endregion
