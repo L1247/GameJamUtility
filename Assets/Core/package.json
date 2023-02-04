@@ -1,16 +1,11 @@
 {
-  "name": "com.rstar.rstarutility",
-  "displayName": "rStar Utility",
-  "description": "包含DDD框架的實作以及相關的測試\n包含一些常用的工具庫\n相依Zenject、UniRx、MessagePipe、UniTask",
-  "version": "1.0.5",
-  "unity": "2021.3",
+  "name": "com.rstar.gamejamutility",
+  "displayName": "GameJam Utility",
+  "description": "",
+  "version": "1.0.0",
+  "unity": "2022.2",
   "unityRelease": "1f1",
   "dependencies": {
-    "com.svermeulen.extenject": "9.2.0-stcf3",
-    "com.cysharp.unitask": "2.3.1",
-    "com.cysharp.messagepipe": "1.7.4",
-    "com.cysharp.messagepipe.zenject": "1.7.4",
-    "com.neuecc.unirx": "7.1.0"
   },
   "author": {
     "name": "rStar",
@@ -19,6 +14,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/L1247/rStarUtility.git"
+    "url": "https://github.com/L1247/GameJamUtility"
   }
 }
