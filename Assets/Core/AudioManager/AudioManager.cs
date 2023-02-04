@@ -47,18 +47,22 @@ namespace GameJamUtility.Core.AudioManager
         [SerializeField]
         private MusicDataBase musicDataBase;
 
+        private bool isInit;
+
     #endregion
 
     #region Public Methods
 
         public void PlayAudio(string audioKey)
         {
+            Init();
             if (audioDatabase.TryGetValue(audioKey , out var clip)) audioSource.PlayOneShot(clip);
             else Debug.LogWarning($"[Play Audio] - can't find audio by key: {audioKey} , Try add AudioInfo in prefab.");
         }
 
         public void PlayMusic(string musicKey)
         {
+            Init();
             if (musicDataBase.TryGetValue(musicKey , out var clip))
             {
                 audioSource.clip = clip;
@@ -76,6 +80,8 @@ namespace GameJamUtility.Core.AudioManager
 
         private void Init()
         {
+            if (isInit) return;
+            isInit                  = true;
             audioSource             = gameObject.GetOrAddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             audioSource.clip        = null;
