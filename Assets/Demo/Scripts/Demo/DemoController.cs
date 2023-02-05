@@ -16,7 +16,7 @@ namespace Demo
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("key Space down");
-                AudioManager.Instance.PlayAudio("Success");
+                AudioManager.Instance.PlayAudio("Success" );
             }
 
             if (Input.GetKeyDown(KeyCode.B))

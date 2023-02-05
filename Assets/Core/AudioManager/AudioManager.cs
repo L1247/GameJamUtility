@@ -53,10 +53,10 @@ namespace GameJamUtility.Core.AudioManager
 
     #region Public Methods
 
-        public void PlayAudio(string audioKey)
+        public void PlayAudio(string audioKey , float volumeScale = 1.0f)
         {
             Init();
-            if (audioDatabase.TryGetValue(audioKey , out var clip)) audioSource.PlayOneShot(clip);
+            if (audioDatabase.TryGetValue(audioKey , out var clip)) audioSource.PlayOneShot(clip , volumeScale);
             else Debug.LogWarning($"[Play Audio] - can't find audio by key: {audioKey} , Try add AudioInfo in prefab.");
         }
 
