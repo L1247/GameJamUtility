@@ -1,6 +1,7 @@
 #region
 
 using GameJamUtility.Core.UnityUtility;
+using UnityEditor;
 using UnityEngine;
 
 #endregion
@@ -15,17 +16,17 @@ namespace GameJamUtility.Core.AudioManager
         {
             get
             {
+                ClearInstanceIfEditor();
                 if (instance is not null) return instance;
-                var prefab = Resources.Load<AudioManager>("GameJamUtility/AudioManager");
+                var prefab = GetPrefab();
                 if (prefab is null)
                 {
                     Debug.LogWarning("audio manager prefab is null. place a AudioManager prefab in Resources/GameJamUtility path.");
                     return null;
                 }
 
-                var audioManager = Instantiate(prefab);
+                var audioManager = CreateAudioManager(prefab);
                 if (prefab.dontDestroyOnLoad) DontDestroyOnLoad(audioManager);
-                audioManager.Init();
                 instance = audioManager;
                 return instance;
             }
@@ -77,6 +78,26 @@ namespace GameJamUtility.Core.AudioManager
     #endregion
 
     #region Private Methods
+
+        private static void ClearInstanceIfEditor()
+        {
+        #if UNITY_EDITOR
+            if (EditorSettings.enterPlayModeOptionsEnabled) instance = null;
+        #endif
+        }
+
+        private static AudioManager CreateAudioManager(AudioManager prefab)
+        {
+            var audioManager = Instantiate(prefab);
+            audioManager.Init();
+            return audioManager;
+        }
+
+        private static AudioManager GetPrefab()
+        {
+            var prefab = Resources.Load<AudioManager>("GameJamUtility/AudioManager");
+            return prefab;
+        }
 
         private void Init()
         {
