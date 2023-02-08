@@ -16,7 +16,6 @@ namespace GameJamUtility.Core.AudioManager
         {
             get
             {
-                ClearInstanceIfEditor();
                 if (instance is not null) return instance;
                 var prefab = GetPrefab();
                 if (prefab is null)
@@ -42,13 +41,13 @@ namespace GameJamUtility.Core.AudioManager
 
         private AudioSource audioSource;
 
+        private bool isInit;
+
         [SerializeField]
         private AudioDatabase audioDatabase;
 
         [SerializeField]
         private MusicDataBase musicDataBase;
-
-        private bool isInit;
 
     #endregion
 
@@ -79,7 +78,7 @@ namespace GameJamUtility.Core.AudioManager
 
     #region Private Methods
 
-        private static void ClearInstanceIfEditor()
+        private void ClearInstanceIfEditor()
         {
         #if UNITY_EDITOR
             if (EditorSettings.enterPlayModeOptionsEnabled) instance = null;
@@ -106,6 +105,11 @@ namespace GameJamUtility.Core.AudioManager
             audioSource             = gameObject.GetOrAddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             audioSource.clip        = null;
+        }
+
+        private void OnDisable()
+        {
+            ClearInstanceIfEditor();
         }
 
     #endregion
